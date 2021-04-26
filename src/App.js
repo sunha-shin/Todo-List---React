@@ -1,26 +1,19 @@
 import React, {useState ,useEffect} from "react";
-import './App.css';
-import TodoForm from "./components/TodoForm";
+import {GlobalStyle} from "./Styled/GlobalStyle";
+import TodoTemplate from "./components/TodoTemplate";
+import TodoHead from "./components/TodoHead";
 import TodoList from "./components/TodoList";
+import TodoCreate from "./components/TodoCreate";
 
 function App() {
-  const [todos, setTodos] = useState([]);
-
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
-  }, [todos]);
-
-  function addTodo(todo) {
-    setTodos([todo, ...todos]);
-  }
-
   return (
     <div className="App">
-      <header className="App-header">
-        <p>React Todo</p>
-          <TodoForm addTodo={addTodo} />
-          <TodoList todos={todos} />
-      </header>
+        <GlobalStyle/>
+      <TodoTemplate>
+          <TodoHead/>
+          <TodoList/>
+          <TodoCreate/>
+      </TodoTemplate>
     </div>
   );
 }
